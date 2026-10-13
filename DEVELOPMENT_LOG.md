@@ -439,6 +439,11 @@
 - Agent-local GitHub device login succeeded as sorried; authorized reviewbranch pushed c81d424. Actual run38437636593 on arm64/Intel Xcode26.6/17F113 passed architecture/toolchain/projectplutil/list gates but failed Python dependency-root test due macOS /var→/private/var canonicalization. No FFmpeg/appbuild or distributions yet. Release skipped.
 - Canonicalized dependencycontainment root and added symlinkparent regression; LinuxPython36/36pass. Commit64ad817 pushed, run38437881806 started on botharchitectures. Actualresults awaited; no successclaim.
 
+## Goal round83 — complete canonical test expectations
+
+- Run38438133333 exposed remainingline26/28 expectations comparingresolvedactual to unresolvedexpected. Prior6647bba onlyfixedloaderassertion, incompletefix acknowledged. Nowboth executablepathassertions canonicalized; Python36/36, commitd656cc3pushed.
+- BilingualREADME andrepositorydescription/topics published in47778f3; no release tags. NativeCI stillhasnotpassedprerequisites or produceddistributions.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.
