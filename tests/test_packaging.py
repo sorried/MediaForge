@@ -50,6 +50,22 @@ class PackagingTests(unittest.TestCase):
             with self.subTest(configuration=bad), self.assertRaises(SystemExit):
                 VERIFY.verify_license_configuration(bad)
 
+    def test_dependency_root_accepts_symlinked_parent(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            actual = root / "actual"
+            contents = actual / "Contents"
+            tools = contents / "Resources/Tools"
+            tools.mkdir(parents=True)
+            library = tools / "lib/library.dylib"
+            library.parent.mkdir()
+            library.write_bytes(b"library")
+            alias = root / "alias"
+            alias.symlink_to(actual, target_is_directory=True)
+            aliased_contents = alias / "Contents"
+            resolved = VERIFY.resolve_dependency("@executable_path/lib/library.dylib", library, aliased_contents / "Resources/Tools/ffmpeg", aliased_contents)
+            self.assertEqual(resolved.resolve(), library.resolve())
+
     def test_deployment_platform_must_be_macos(self):
         for platform in ("1", "macos", "MACOS"):
             VERIFY.verify_deployment_platform(f"cmd LC_BUILD_VERSION\n platform {platform}\n minos 14.0\n", "app")

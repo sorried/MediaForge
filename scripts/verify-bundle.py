@@ -80,7 +80,7 @@ def resolve_dependency(dependency, binary, executable, contents):
         resolved = executable.parent / dependency.removeprefix("@executable_path/")
     else:
         raise SystemExit(f"Non-system or unresolved dependency: {binary}: {dependency}")
-    require(resolved.resolve().is_relative_to(contents) and resolved.is_file(),
+    require(resolved.resolve().is_relative_to(contents.resolve()) and resolved.is_file(),
             f"Unresolved bundle dependency: {binary}: {dependency}")
     return resolved
 
