@@ -288,6 +288,19 @@ final class CoreTests: XCTestCase {
         XCTAssertEqual(try capabilities.videoEncoder(preference: .software), "mpeg4")
         #if !os(macOS)
         XCTAssertThrowsError(try capabilities.videoEncoder(preference: .hardware))
+        #else
+        let native = FFmpegCapabilities(version: "test", encoders: ["h264_videotoolbox", "aac", "mpeg4"], muxers: ["mp4"])
+        let url = URL(fileURLWithPath: "/fixture.mp4")
+        let engine = ConversionEngine(toolchain: .init(ffmpegURL: url, ffprobeURL: url))
+        for preference in VideoEncoderPreference.allCases {
+            let request = ConversionRequest(inputURL: url, outputURL: url, profile: .mp4, settings: .init(videoEncoderPreference: preference))
+            let arguments = try engine.makeArguments(request: request, temporary: url, capabilities: native)
+            if preference == .software { XCTAssertFalse(arguments.contains("-allow_sw")) }
+            else {
+                let index = try XCTUnwrap(arguments.firstIndex(of: "-allow_sw"))
+                XCTAssertEqual(arguments[index + 1], preference == .automatic ? "1" : "0")
+            }
+        }
         #endif
     }
     func testOutputValidationRejectsWrongFrameRate() throws {

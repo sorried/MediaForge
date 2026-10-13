@@ -23,7 +23,7 @@ SwiftUI/AppKit import, queue, history, custom presets, settings, Finder/open act
 
 ## Not established yet
 
-- Working artifacts for Intel/Apple Silicon are not established. Actual dual-architecture CI has started: native toolchain/project checks and standalone import/persistence test gates passed. FFmpeg source compilation and the application/package stages are not yet verified.
+- Working artifacts for Intel/Apple Silicon are not established. Actual dual-architecture CI has started: native toolchain/project checks and standalone import/persistence test gates passed. Pinned LGPL FFmpeg 8.0.1 source compilation succeeded on both architectures in run38440847674. The application build failed on a duplicate verification entrypoint; the exact source exclusion fix is under CI verification. Application tests and package stages are not yet verified.
 - Additional profile mappings are implemented, but optional MP3/OGG/Opus/WebM/WebP encoders are absent in the minimal bundled LGPL configuration. No promise those options work without an appropriate compliant engine build.
 - ImageIO HEIC/TIFF/BMP service exists with seven native tests; those formats are not exposed in the main UI yet and macOS tests have not run.
 - Target-size retries: implemented one-pass bitrate estimate with real measured deviation; exact size is not promised. Multi-attempt refinement remains optional follow-up.

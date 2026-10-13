@@ -118,6 +118,9 @@ public struct ConversionEngine: Sendable {
             } else {
                 guard let encoder = composition.videoEncoder else { throw MediaForgeError.unsupported("Video encoder unavailable.") }
                 arguments += ["-c:v", encoder, "-pix_fmt", "yuv420p"]
+                if encoder == "h264_videotoolbox" {
+                    arguments += ["-allow_sw", settings.videoEncoderPreference == .automatic ? "1" : "0"]
+                }
                 if settings.removeAudio { arguments += ["-an"] }
                 else if let audio = composition.audioEncoder { arguments += ["-map", "0:a:0?", "-c:a", audio] }
                 if composition.fastStart { arguments += ["-movflags", "+faststart"] }

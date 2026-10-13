@@ -459,6 +459,11 @@
 - Run38440847674 builtLGPL8.0.1engineonarm64andx86_64. Bothappbuilds failedduplicate@main verificationfixture. Earlierfolderexception ineffective; exact Verification/ImportScannerChecks.swift membershipexceptionadded withupdatedstaticregression. Python36pass.
 - Bothnativeappcompilelogs agree, actualfixedtargetbuild awaited. Noapplication/distributionsuccessyet.
 
+## Goal round95 — Apple Silicon native distribution verified
+
+- Run38442505822ARMjob115452404723 passed completepipeline: Xcodeappbuild,72XCTestcases(51core/7ImageIO/14appmodel), bundledLGPLruntime/bundlegates, actualDMGmounted/ZIPextracted/signedadhoc/checksumchecked. SeparateSwiftTesting0testslineisnotXCTestcount.
+- DownloadedARMartifact intoignored dist/verified-arm64; localsha256sum verifies4manifestpayloads. Statusversion1.0.0-dev/signingad-hoc/notarizedfalse. Intelstillrunning. NoGUI/Sonoma14manual/DeveloperID/releaseclaim.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.
