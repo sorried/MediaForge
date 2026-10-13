@@ -23,9 +23,9 @@ class PackagingTests(unittest.TestCase):
             binary.parent.mkdir(parents=True)
             binary.write_bytes(b"library")
             tool = contents / "Resources/Tools/ffmpeg"
-            self.assertEqual(VERIFY.resolve_dependency("@executable_path/lib/libavcodec.dylib", binary, tool, contents).resolve(), binary)
+            self.assertEqual(VERIFY.resolve_dependency("@executable_path/lib/libavcodec.dylib", binary, tool, contents).resolve(), binary.resolve())
             dependency = "@executable_path/../Resources/Tools/lib/libavcodec.dylib"
-            self.assertEqual(VERIFY.resolve_dependency(dependency, binary, executable, contents).resolve(), binary)
+            self.assertEqual(VERIFY.resolve_dependency(dependency, binary, executable, contents).resolve(), binary.resolve())
             self.assertEqual(VERIFY.resolve_dependency("@loader_path/libavcodec.dylib", binary, executable, contents).resolve(), binary.resolve())
             with self.assertRaisesRegex(SystemExit, "Unresolved bundle dependency"):
                 VERIFY.resolve_dependency("@loader_path/../../../../escape", binary, executable, contents)
