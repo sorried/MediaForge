@@ -1,38 +1,48 @@
 # Media Forge
 
-Нативный локальный конвертер мультимедиа для macOS 14+ на SwiftUI/AppKit. Проект находится в разработке: готовность к распространению определяется настоящими тестами, а не наличием интерфейса или workflow.
+**English** · [Русский](<README.ru.md>)
 
-## Состояние поставки
+A native, local-first media converter for macOS 14+, built with SwiftUI and AppKit. Convert video, audio and images without a browser shell, cloud uploads or a separate media server.
 
-**Готовых проверенных macOS-дистрибутивов в этой сессии пока нет.** Разработка выполняется на Linux. Сборка Xcode, запуск интерфейса, DMG, подпись и реальный запуск на Sonoma здесь не выполнялись. GitHub Actions ещё не запускались; наличие файлов workflow не означает наличие Artifacts или опубликованного Release.
+**In development.** Intel and Apple Silicon CI is running, but verified macOS distributions are not available yet. Initial native runs exposed macOS path-validation issues; fixes have been pushed. Passing Linux tests are not proof of a working macOS release.
 
-Исходники: [sorried/MediaForge](https://github.com/sorried/MediaForge). После реального успешного CI артефакты доступны в [GitHub Actions](https://github.com/sorried/MediaForge/actions); опубликованные версии — в [Releases](https://github.com/sorried/MediaForge/releases). Эти ссылки не означают, что сборки уже созданы.
+[Builds and checks](https://github.com/sorried/MediaForge/actions) · [Releases](https://github.com/sorried/MediaForge/releases) · [Verification status](<docs/STATUS.md>)
 
-Приложение не использует Electron, браузерную оболочку, локальный HTTP-сервер, аккаунты или облачную обработку. Релизная сборка должна содержать FFmpeg и FFprobe внутри приложения, без требования установки Homebrew.
+## Features
 
-## Реализованные возможности
+- File picker, drag-and-drop and optional recursive folder import.
+- Queue with 1–4 concurrent jobs, cancellation, retries and real FFmpeg progress.
+- History, custom presets, themes, diagnostics and per-job output folders.
+- Persistent queue: pending jobs restore paused; interrupted jobs require a manual retry.
+- Trimming, resolution, aspect ratio, frame rate and bitrate; audio channels and sample rate.
+- Approximate one-pass target size for MP4/MOV, with measured deviation—not an exact-size guarantee.
+- Native ImageIO PNG/JPEG conversion with aspect-fit resizing, JPEG quality, transparency handling and loss warnings.
 
-- Импорт файлов, drag-and-drop, выбор папок с управляемой рекурсией; исходники не удаляются.
-- Очередь с ограничением 1–4 задач, отменой и повтором, реальным прогрессом FFmpeg и действиями открытия результата.
-- История, пользовательские пресеты, темы, диагностика и отдельные папки результатов для заданий.
-- Сохранение очереди между запусками: ожидающие задачи восстанавливаются приостановленными, прерванные требуют ручного повтора; возможные готовые результаты не заменяются.
-- Конвертация 18 профилей в ядре с реальной проверкой кодеков/контейнеров; обрезка, разрешение, пропорции, FPS, битрейт, каналы и частота аудио.
-- Приблизительный целевой размер MP4/MOV с одним проходом и измеренным отклонением, без обещания точного размера.
-- Native ImageIO PNG/JPEG: вписывание, качество JPEG, прозрачность/фон и предупреждения о потере анимации, метаданных и цветовых данных.
+These describe implemented code. Native UI, ImageIO and VideoToolbox still require verified macOS execution.
 
-Это описание реализованного кода; нативный интерфейс и ImageIO требуют macOS-проверки. Полный FFmpeg test-engine не равен минимальной LGPL-сборке для поставки: MP3, OGG, Opus, WebM и WebP могут быть недоступны в ней и отключаются по реальным capabilities.
+## Formats
 
-## Системные требования и архитектуры
+| Media | Core output profiles |
+| --- | --- |
+| Video | MP4, MOV, MKV, WebM, AVI, M4V, TS |
+| Audio | MP3, M4A, AAC, AIFF, OGG, Opus, FLAC, WAV |
+| Images | PNG, JPEG, WebP single-frame exports |
 
-- Минимальная целевая версия: macOS 14.0 Sonoma. Версия SDK/Xcode при сборке может быть новее.
-- Apple Silicon: выбирайте AppleSilicon (`arm64`), включая совместимые модели Mac с Apple Silicon.
-- Intel: выбирайте Intel (`x86_64`).
-- Совместимость конкретной модели определяется поддержкой macOS 14 и архитектурой, а не маркетинговым названием.
-- Deployment target сам по себе не доказывает запуск на macOS 14.
+All 18 profiles have been converted with a test engine. Application support depends on the actual bundled encoders and muxers. The minimal LGPL configuration lacks MP3, OGG, Opus, WebM and WebP; unavailable options are disabled.
 
-## Получение и установка
+Image exports can discard animation, extra pages, metadata and color information. HEIC/TIFF/BMP support exists in the service layer but is not exposed in the main interface.
 
-После успешного выполнения macOS CI файлы должны появиться в Actions → соответствующий успешный запуск → Artifacts. Для обычного пользователя предназначены:
+## Safety and privacy
+
+Processing is local; no application account or cloud service is required. Originals are never intentionally overwritten or deleted. Jobs encode into private staging directories. The engine checks metadata and fully decodes staged media before exclusive publication; existing destination files are not replaced. Verification adds processing time, and cancellation remains available before publication.
+
+## Requirements and installation
+
+- Target OS: macOS 14 Sonoma or later. A deployment target alone does not prove Sonoma compatibility.
+- Apple Silicon: `arm64`; Intel: `x86_64`.
+- Release bundles are intended to include FFmpeg and FFprobe, without requiring Homebrew.
+
+After successful macOS CI, open the run’s **Artifacts** section. Planned distribution names:
 
 ```text
 MediaForge-macOS-14+-AppleSilicon.zip
@@ -41,17 +51,13 @@ MediaForge-macOS-14+-Intel.zip
 MediaForge-macOS-14+-Intel.dmg
 ```
 
-Откройте DMG нужной архитектуры и перенесите Media Forge в «Программы». Не выбирайте другую архитектуру ради обхода ошибки. FFmpeg и FFprobe поставляются вместе с приложением. После конвертации используйте «Открыть файл» или «Показать в Finder».
+Choose your architecture, open the DMG and drag Media Forge into Applications. These are intended installation steps, not a claim that verified downloads already exist.
 
-**Без Developer ID и нотариализации Gatekeeper может блокировать скачанное приложение.** Не обещаем запуск неподписанной сборки двойным щелчком. Используйте предусмотренное macOS разрешение в настройках безопасности только если доверяете источнику; не отключайте Gatekeeper глобально.
+**Ad-hoc builds may be blocked by Gatekeeper.** Developer ID signing and notarization require separate Apple credentials and successful verification. Do not disable Gatekeeper globally.
 
-Перед публикацией результата движок проверяет метаданные и полностью декодирует временный файл. Это дополнительный проход и дополнительное время обработки; отмена доступна до публикации.
+## Development and verification
 
-## Разработка и проверки
-
-Требуется macOS со стабильным Xcode для нативного приложения и упаковки. Портируемое ядро можно тестировать отдельно с совместимым Swift toolchain. Интеграционные тесты должны использовать настоящий движок и генерировать собственные небольшие тестовые файлы; пропуск теста при отсутствии инструмента — не успешная проверка конвертации.
-
-Полный локальный прогон требует явных абсолютных путей к настоящим тестовым FFmpeg/FFprobe и завершается ошибкой, если они не заданы:
+Native builds and packaging require macOS and Xcode. The portable core can be tested with a compatible Swift toolchain. Full verification requires explicit paths to real FFmpeg and FFprobe:
 
 ```sh
 MEDIAFORGE_FFMPEG=/absolute/path/to/ffmpeg \
@@ -59,28 +65,12 @@ MEDIAFORGE_FFPROBE=/absolute/path/to/ffprobe \
 bash scripts/verify-development.sh
 ```
 
-Команда выполняет интеграционные тесты без молчаливого пропуска движка, проверки импорта/состояния, Python-тесты и разбор Swift. На Linux она не подтверждает сборку Apple frameworks или готовность macOS-дистрибутива. Отдельный `swift test` допускает пропуск интеграции при отсутствии движка и не заменяет полный прогон.
+The command runs real conversion tests, import and persistence checks, Python tests and Swift syntax checks. On Linux it does **not** typecheck Apple frameworks or verify native distributions. A plain `swift test` may skip integration when tools are absent.
 
-Фактическая реализация и оставшиеся требования перечислены в [статусе продукта](docs/STATUS.md). Тесты обхода папок можно запустить отдельно:
+See [build instructions](<docs/BUILD.md>), [release acceptance](<docs/ACCEPTANCE.md>), [contributing](<CONTRIBUTING.md>) and the [development log](<DEVELOPMENT_LOG.md>) for commands and evidence.
 
-```sh
-bash scripts/test-imports.sh
-bash scripts/test-persistence.sh
-python3 -m unittest discover -s tests -v
-```
+## License and releases
 
-Точные команды macOS-сборки, упаковки и проверки зависимостей описаны в [документации сборки](docs/BUILD.md). Проверки перед публикацией перечислены в [acceptance checklist](docs/ACCEPTANCE.md). Текущий журнал и фактически выполненные проверки — в [DEVELOPMENT_LOG.md](DEVELOPMENT_LOG.md).
+The existing [GPLv3 application license](<LICENSE>) is unchanged. FFmpeg has separate redistribution obligations. The release engine uses pinned source and an LGPL-only configuration without GPL/nonfree components; see [FFmpeg build and licensing](<docs/FFMPEG.md>).
 
-## Форматы и лицензии
-
-Доступность профилей должна определяться фактическими кодеками и контейнерами встроенной сборки. Отсутствие libx264, libmp3lame или libwebp нельзя маскировать работающим пунктом меню. Не гарантируется фиксированная степень сжатия, точный целевой размер, сохранение всех метаданных или анимации при преобразовании в неподходящий формат.
-
-Существующая [GPLv3-лицензия приложения](LICENSE) сохранена без изменений. FFmpeg имеет отдельные условия распространения; основная сборка должна быть LGPL-only без GPL/nonfree-компонентов. Конфигурация, закреплённые исходники и условия поставки описаны в [документации FFmpeg](docs/FFMPEG.md).
-
-Официальные источники: [FFmpeg legal](https://ffmpeg.org/legal.html), [FFmpeg CLI](https://ffmpeg.org/ffmpeg.html), [GitHub-hosted runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners), [Apple Developer](https://developer.apple.com/documentation/).
-
-## Выпуск версии
-
-Релизный workflow предназначен для тегов `v*` и должен дождаться успешных обязательных сборок обеих архитектур, тестов и проверки архивов. Обычный push/PR не должен создавать публичный релиз. Создавайте и отправляйте тег только с разрешения владельца репозитория.
-
-Подписанный релиз требует Apple Developer ID credentials в GitHub Actions Secrets, Hardened Runtime, timestamp, нотариализации и проверки её результата. Обычный CI должен работать без Apple Secrets; такой результат нельзя называть подписанным Developer ID или нотариализированным.
+Branch builds do not publish releases. Version-tag releases must wait for both architecture builds, tests and archive verification. Tags and public publication require the repository owner’s authorization.
