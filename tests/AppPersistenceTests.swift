@@ -313,6 +313,11 @@ final class AppPersistenceTests: XCTestCase {
 @main
 struct AppPersistenceTestRunner {
     static func main() {
+        #if os(macOS)
+        let suite = XCTestSuite(forTestCaseClass: AppPersistenceTests.self)
+        suite.run()
+        guard let run = suite.testRun, run.executionCount == 17, run.totalFailureCount == 0 else { exit(1) }
+        #else
         XCTMain([testCase([
             ("testBuiltInPresetsValidateAndRequireActualCodecs", AppPersistenceTests.testBuiltInPresetsValidateAndRequireActualCodecs),
             ("testRemoteStoreURLCannotAccessLocalPath", AppPersistenceTests.testRemoteStoreURLCannotAccessLocalPath),
@@ -332,5 +337,6 @@ struct AppPersistenceTestRunner {
             ("testFutureSchemaFailsRatherThanPretendingEmptySuccess", AppPersistenceTests.testFutureSchemaFailsRatherThanPretendingEmptySuccess),
             ("testDraftRejectsMalformedAndConflictingValues", AppPersistenceTests.testDraftRejectsMalformedAndConflictingValues)
         ])])
+        #endif
     }
 }

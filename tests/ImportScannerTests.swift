@@ -76,6 +76,11 @@ final class ImportScannerTests: XCTestCase {
 @main
 struct ImportScannerTestRunner {
     static func main() {
+        #if os(macOS)
+        let suite = XCTestSuite(forTestCaseClass: ImportScannerTests.self)
+        suite.run()
+        guard let run = suite.testRun, run.executionCount == 6, run.totalFailureCount == 0 else { exit(1) }
+        #else
         XCTMain([testCase([
             ("testNonrecursiveAndRecursiveFolderSelection", ImportScannerTests.testNonrecursiveAndRecursiveFolderSelection),
             ("testSymlinksAreNotFollowed", ImportScannerTests.testSymlinksAreNotFollowed),
@@ -84,5 +89,6 @@ struct ImportScannerTestRunner {
             ("testScanLimitDeduplicatesAndExcludesExistingFiles", ImportScannerTests.testScanLimitDeduplicatesAndExcludesExistingFiles),
             ("testImageRecognitionIsCaseInsensitive", ImportScannerTests.testImageRecognitionIsCaseInsensitive)
         ])])
+        #endif
     }
 }
