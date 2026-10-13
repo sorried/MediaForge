@@ -434,6 +434,11 @@
 - Final committedsourceverification passes51core+1ImageIOskip, scanner6,persistence17,Python35; nativeparseonly. Reviewbranchready, no backgroundjobs.
 - GitHublogin remainsabsent acrossrounds77–79 (ghauthstatus exit1). HostLinux/noXcode; authorizedremoteCI cannotstartwithoutcredentials. Stoppingautomaticroundsratherthanaddingunrelatedfixes. Resumeafteruserauthenticates. No push/tags/releasesperformed.
 
+## First native CI execution — 2026-10-13
+
+- Agent-local GitHub device login succeeded as sorried; authorized reviewbranch pushed c81d424. Actual run38437636593 on arm64/Intel Xcode26.6/17F113 passed architecture/toolchain/projectplutil/list gates but failed Python dependency-root test due macOS /var→/private/var canonicalization. No FFmpeg/appbuild or distributions yet. Release skipped.
+- Canonicalized dependencycontainment root and added symlinkparent regression; LinuxPython36/36pass. Commit64ad817 pushed, run38437881806 started on botharchitectures. Actualresults awaited; no successclaim.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.

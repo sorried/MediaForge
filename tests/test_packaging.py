@@ -26,7 +26,7 @@ class PackagingTests(unittest.TestCase):
             self.assertEqual(VERIFY.resolve_dependency("@executable_path/lib/libavcodec.dylib", binary, tool, contents).resolve(), binary)
             dependency = "@executable_path/../Resources/Tools/lib/libavcodec.dylib"
             self.assertEqual(VERIFY.resolve_dependency(dependency, binary, executable, contents).resolve(), binary)
-            self.assertEqual(VERIFY.resolve_dependency("@loader_path/libavcodec.dylib", binary, executable, contents), binary)
+            self.assertEqual(VERIFY.resolve_dependency("@loader_path/libavcodec.dylib", binary, executable, contents).resolve(), binary.resolve())
             with self.assertRaisesRegex(SystemExit, "Unresolved bundle dependency"):
                 VERIFY.resolve_dependency("@loader_path/../../../../escape", binary, executable, contents)
             with self.assertRaisesRegex(SystemExit, "Non-system or unresolved"):
