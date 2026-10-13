@@ -7,7 +7,8 @@ TEST_FLAGS=()
 if [[ $(uname -s) == Darwin ]]; then
   FRAMEWORKS="$(xcrun --sdk macosx --show-sdk-platform-path)/Developer/Library/Frameworks"
   SWIFT_TEST_LIBS="$(xcrun --sdk macosx --show-sdk-platform-path)/Developer/usr/lib"
-  TEST_FLAGS=(-F "$FRAMEWORKS" -I "$SWIFT_TEST_LIBS" -L "$SWIFT_TEST_LIBS" -Xlinker -rpath -Xlinker "$FRAMEWORKS" -Xlinker -rpath -Xlinker "$SWIFT_TEST_LIBS")
+  SHARED_FRAMEWORKS="$(xcode-select -p)/../SharedFrameworks"
+  TEST_FLAGS=(-Xlinker -rpath -Xlinker "$SHARED_FRAMEWORKS" -F "$FRAMEWORKS" -I "$SWIFT_TEST_LIBS" -L "$SWIFT_TEST_LIBS" -Xlinker -rpath -Xlinker "$FRAMEWORKS" -Xlinker -rpath -Xlinker "$SWIFT_TEST_LIBS")
 fi
 if [[ $(uname -s) == Darwin ]]; then EXT=dylib; else EXT=so; fi
 swiftc -swift-version 6 -emit-library -emit-module -module-name MediaForgeCore "$ROOT"/Sources/MediaForgeCore/*.swift -emit-module-path "$WORK/MediaForgeCore.swiftmodule" -o "$WORK/libMediaForgeCore.$EXT"

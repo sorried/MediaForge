@@ -33,8 +33,8 @@ jobs:
           set -euo pipefail
           test "$(uname -m)" = '${{ matrix.arch }}'
           test "$(uname -s)" = Darwin
-          test "$(xcodebuild -version | head -n 1)" = 'Xcode 26.6'
-          test "$(xcodebuild -version | tail -n 1)" = 'Build version 17F113'
+          xcode_version="$(xcodebuild -version)"
+          test "$xcode_version" = $'Xcode 26.6\nBuild version 17F113'
           xcrun swift --version
           plutil -lint MediaForge.xcodeproj/project.pbxproj
           xcodebuild -list -project MediaForge.xcodeproj
