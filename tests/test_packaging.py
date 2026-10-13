@@ -196,7 +196,7 @@ class PackagingTests(unittest.TestCase):
 
     def test_verification_harness_is_excluded_from_app_target(self):
         project = (ROOT / "MediaForge.xcodeproj/project.pbxproj").read_text()
-        self.assertIn("membershipExceptions = (generate_icon.py, __pycache__, Verification)", project)
+        self.assertIn('"Verification/ImportScannerChecks.swift"', project)
         harness = (ROOT / "Resources/Verification/ImportScannerChecks.swift").read_text()
         self.assertIn("@main", harness)
 

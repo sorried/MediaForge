@@ -449,6 +449,16 @@
 - ActualCI Pythonpathchecks nowpass. macOSswiftc required platform XCTestframework+Swift overlay searchpaths (e2a25e2/9a41bc6). AppleXCTest doesnotprovideLinuxXCTMain/testCase; standaloneentryusesXCTestSuite withstrict6/17executioncounts (089eab7).
 - Runtime thenrequiredXcodeSharedFrameworks forXCTestCore. Addedrpath andcapturedxcodeversionwithoutheadbrokenpipe (1db9bc3). Python36/36/localscanner6/persistence17 verified; nativeexecutionnotyetpassed. Run38440178194awaited.
 
+## Native prerequisites and FFmpeg host SDK — rounds88–89
+
+- Actualarm64run38440178194passed6import/17persistence tests; bothnativeprerequisitegates passed inrun38440536623. EngineconfigurefailedhostC11check. Diagnostics295af49revealedhostclangmissingSDK/ctype.h, notlackofC11support.
+- Official8.0.1configure host-cc/host-cflags/host-ldflags inspected. bf7011epassesSDK/architectureflags tohostcompiler/linker; Python36pass, nativebuildrun38440847674awaited. NoFFmpeg/app/distribution successyet.
+
+## Goal round93 — both native FFmpeg source builds succeed
+
+- Run38440847674 builtLGPL8.0.1engineonarm64andx86_64. Bothappbuilds failedduplicate@main verificationfixture. Earlierfolderexception ineffective; exact Verification/ImportScannerChecks.swift membershipexceptionadded withupdatedstaticregression. Python36pass.
+- Bothnativeappcompilelogs agree, actualfixedtargetbuild awaited. Noapplication/distributionsuccessyet.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.

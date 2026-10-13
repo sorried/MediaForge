@@ -9,7 +9,7 @@ This ledger separates implemented code from verified native behavior. Update it 
 - Media metadata and runtime encoder/container capabilities.
 - Profiles include MP4/MOV/MKV/WebM/AVI/M4V/TS video; MP3/M4A/AAC/AIFF/OGG/Opus/FLAC/WAV audio; PNG/JPEG/WebP single-frame exports. Each requires a compatible real encoder/container composition; unsupported bundled codecs remain disabled. All18 profiles have been converted and probed successfully with the test engine.
 - Trim, dimensions, frame rate, audio removal and bitrate settings. Default aspect preservation with centered padding is verified through real converted/decode RGB pixels; explicit stretching is optional.
-- Latest pinned-LGPL Linux verification:51 core XCTest passes,1 explicit ImageIO skip; scanner6/6, app persistence/preset catalog17/17, portable packaging/version/localization/signing/release35/35. Strict Swift6 core compilation and native source syntax parse pass; no Apple SDK typecheck claim.
+- Latest pinned-LGPL Linux verification:51 core XCTest passes,1 explicit ImageIO skip; scanner6/6, app persistence/preset catalog17/17, portable packaging/version/localization/signing/release36/36. Strict Swift6 core compilation and native source syntax parse pass; no Apple SDK typecheck claim.
 - Job-local temporary output, real post-conversion probing and exclusive publication without overwrite.
 - Deadline/cancellation with child termination and kill escalation.
 
@@ -23,7 +23,7 @@ SwiftUI/AppKit import, queue, history, custom presets, settings, Finder/open act
 
 ## Not established yet
 
-- Working artifacts for Intel/Apple Silicon: scripts/workflows are present, actual macOS builds not run.
+- Working artifacts for Intel/Apple Silicon are not established. Actual dual-architecture CI has started: native toolchain/project checks and standalone import/persistence test gates passed. FFmpeg source compilation and the application/package stages are not yet verified.
 - Additional profile mappings are implemented, but optional MP3/OGG/Opus/WebM/WebP encoders are absent in the minimal bundled LGPL configuration. No promise those options work without an appropriate compliant engine build.
 - ImageIO HEIC/TIFF/BMP service exists with seven native tests; those formats are not exposed in the main UI yet and macOS tests have not run.
 - Target-size retries: implemented one-pass bitrate estimate with real measured deviation; exact size is not promised. Multi-attempt refinement remains optional follow-up.

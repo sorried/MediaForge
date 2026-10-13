@@ -4,7 +4,7 @@ archiveVersion = 1;
 classes = {};
 objectVersion = 77;
 objects = {
-00000000000000000000003C = { isa = PBXFileSystemSynchronizedBuildFileExceptionSet; membershipExceptions = (generate_icon.py, __pycache__, Verification); target = 00000000000000000000000A; };
+00000000000000000000003C = { isa = PBXFileSystemSynchronizedBuildFileExceptionSet; membershipExceptions = (generate_icon.py, __pycache__, Verification, "Verification/ImportScannerChecks.swift"); target = 00000000000000000000000A; };
 000000000000000000000001 = { isa = PBXProject; attributes = { BuildIndependentTargetsInParallel = YES; LastUpgradeCheck = 2660; }; buildConfigurationList = 000000000000000000000028; compatibilityVersion = "Xcode 16.0"; developmentRegion = ru; hasScannedForEncodings = 0; knownRegions = (ru, en, Base); mainGroup = 000000000000000000000002; productRefGroup = 000000000000000000000003; projectDirPath = ""; projectRoot = ""; targets = (00000000000000000000000A, 00000000000000000000000B); };
 000000000000000000000002 = { isa = PBXGroup; children = (000000000000000000000004, 000000000000000000000005, 000000000000000000000006, 000000000000000000000007, 000000000000000000000003); sourceTree = "<group>"; };
 000000000000000000000003 = { isa = PBXGroup; children = (000000000000000000000008, 000000000000000000000009); name = Products; sourceTree = "<group>"; };
