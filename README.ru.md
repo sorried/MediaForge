@@ -6,7 +6,7 @@
 
 ## Состояние поставки
 
-**Проверочная сборка Apple Silicon готова.** [Нативный CI38442505822](https://github.com/sorried/MediaForge/actions/runs/38442505822) прошёл72XCTest-проверки и создал проверенные ZIP/DMG: подпись ad-hoc, нотариализации нет. Intel собрал приложение, но две аппаратные конвертации VideoToolbox завершились ошибкой; проверяется fallback автоматического режима. Ручная проверка интерфейса и настоящий запуск на macOS14/Sonoma ещё не выполнены. Публичного релиза нет.
+**Проверочные сборки Intel и Apple Silicon готовы.** [Нативный CI38444522229](https://github.com/sorried/MediaForge/actions/runs/38444522229) прошёл 72 XCTest-проверки на каждой архитектуре и создал проверенные ZIP/DMG: подпись ad-hoc, нотариализации нет; Gatekeeper может блокировать запуск. Ручная проверка интерфейса, доступности и настоящий запуск на macOS 14/Sonoma ещё не выполнены. Публичного релиза нет.
 
 Исходники: [sorried/MediaForge](https://github.com/sorried/MediaForge). После реального успешного CI артефакты доступны в [GitHub Actions](https://github.com/sorried/MediaForge/actions); опубликованные версии — в [Releases](https://github.com/sorried/MediaForge/releases). Эти ссылки не означают, что сборки уже созданы.
 

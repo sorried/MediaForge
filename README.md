@@ -4,7 +4,7 @@
 
 A native, local-first media converter for macOS 14+, built with SwiftUI and AppKit. Convert video, audio and images without a browser shell, cloud uploads or a separate media server.
 
-**In development.** [Native CI run38442505822](https://github.com/sorried/MediaForge/actions/runs/38442505822) produced verified Apple Silicon ZIP/DMG artifacts after72XCTest checks. They are ad-hoc signed, not notarized. Intel built the app but failed two VideoToolbox hardware-dependent conversions; automatic-mode fallback is being verified. Manual GUI review and actual macOS14 runtime acceptance remain outstanding. No public release has been published.
+**In development.** [Native CI run38444522229](https://github.com/sorried/MediaForge/actions/runs/38444522229) passed on Intel and Apple Silicon, with 72 XCTest checks per architecture and verified ZIP/DMG artifacts. These development builds are ad-hoc signed, not notarized; Gatekeeper may block them. Manual GUI/accessibility review and actual macOS 14 runtime acceptance remain outstanding. No public release has been published.
 
 [Builds and checks](https://github.com/sorried/MediaForge/actions) · [Releases](https://github.com/sorried/MediaForge/releases) · [Verification status](<docs/STATUS.md>)
 
@@ -18,7 +18,7 @@ A native, local-first media converter for macOS 14+, built with SwiftUI and AppK
 - Approximate one-pass target size for MP4/MOV, with measured deviation—not an exact-size guarantee.
 - Native ImageIO PNG/JPEG conversion with aspect-fit resizing, JPEG quality, transparency handling and loss warnings.
 
-These describe implemented code. Native ImageIO and app-model tests passed on Apple Silicon with real conversions; manual UI/accessibility review and Intel acceptance remain outstanding.
+These describe implemented code. Native ImageIO and app-model tests passed on both architectures with real conversions; manual UI/accessibility review and macOS 14 acceptance remain outstanding.
 
 ## Formats
 

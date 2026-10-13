@@ -464,6 +464,16 @@
 - Run38442505822ARMjob115452404723 passed completepipeline: Xcodeappbuild,72XCTestcases(51core/7ImageIO/14appmodel), bundledLGPLruntime/bundlegates, actualDMGmounted/ZIPextracted/signedadhoc/checksumchecked. SeparateSwiftTesting0testslineisnotXCTestcount.
 - DownloadedARMartifact intoignored dist/verified-arm64; localsha256sum verifies4manifestpayloads. Statusversion1.0.0-dev/signingad-hoc/notarizedfalse. Intelstillrunning. NoGUI/Sonoma14manual/DeveloperID/releaseclaim.
 
+## Goal rounds96–97 — Intel VideoToolbox runtime failure and automatic fallback
+
+- Intelrun38442505822appbuiltbut2coreconversions failedVTsession-12908. FFmpeg8.0.1source+currentdocs confirmallow_sw1enablesautomaticsoftwarefallbackwithoutforcingsoftware; hardwaremodeallow_sw0remainsstrict. 8cbb77faddsargument/regressionforautomatic/hardware/software. Linux51core+ImageIOskip/36Pythonpass. Nativefallbackrun38444522229awaited.
+- IndependentlyinspecteddownloadedARMZIP: bundleidorg.mediaforge.MediaForge,version1.0.0,minOS14.0; app/ffmpeg/ffprobearm64MachOheadersverified,FFmpeglicensemetadatapresent. ThisisnotruntimeproofonSonoma14orGUIacceptance.
+
+## Goal rounds98–99 — both distributions verified
+
+- Run38444522229 completed successfully on both architectures. Intel72/72 XCTest and fullpackaging nowpass; ARMremainsgreen. Downloadedmatched Intel/ARMartifactstoignored dist/verified-x86_64 anddist/verified-arm64-current. All8manifestpayloadchecksumchecks pass. Bothstatusfiles ad-hoc/notarizedfalse/version1.0.0-dev. DeliveredbothDMGs; no tags/releases/merge.
+- UpdatedEN/RUREADME,acceptance,statuswithactualnativeevidence. Remaininggates requireinteractiveMacaccess, macOS14Intel/ARMhosts, optionalDeveloperIDcredentials/notarization; unavailablefromLinuxhost. Goalremainsactive, notproductioncompletion.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.

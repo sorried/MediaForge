@@ -28,4 +28,6 @@ A release is not production-ready solely because it builds. Record results and e
 
 ## Current environment
 
-The development host is Linux x86_64. No native UI, Sonoma runtime, Mach-O, DMG or Gatekeeper result has been recorded. GitHub Actions workflows must be executed before downloadable macOS artifacts exist.
+The development host is Linux x86_64. [Native run38442505822](https://github.com/sorried/MediaForge/actions/runs/38442505822) on macOS26/Xcode26.6 passed the Apple Silicon pipeline:72XCTest cases (51core/7ImageIO/14appmodel), built app and bundled LGPL FFmpeg, verified Mach-O architecture/deployment/dependencies, mounted DMG and extracted ZIP, checked ad-hoc signatures and checksums. Downloaded ARM payload checksums were independently verified locally.
+
+[Run38444522229](https://github.com/sorried/MediaForge/actions/runs/38444522229) passed the complete pipeline on both Intel and Apple Silicon, including 72 XCTest cases per architecture and the automatic VideoToolbox software fallback correction. Both ZIP/DMG payloads were downloaded and independently checked against their SHA-256 manifests. No manual GUI/VoiceOver, macOS14 runtime, Gatekeeper or Developer ID/notarization result is established. No tags or public release were created.
