@@ -28,7 +28,8 @@ tar -xf "$ARCHIVE" -C "$WORK"
 cd "$SOURCE"
 FLAGS="-arch $ARCH -isysroot $SDK -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET"
 ./configure --prefix="$PREFIX" --arch="$ARCH" --target-os=darwin \
-  --cc="$(xcrun -f clang)" --sysroot="$SDK" \
+  --cc="$(xcrun -f clang)" --host-cc="$(xcrun -f clang)" --sysroot="$SDK" \
+  --host-cflags="$FLAGS" --host-ldflags="$FLAGS" \
   --extra-cflags="$FLAGS" --extra-ldflags="$FLAGS -Wl,-headerpad_max_install_names" \
   --disable-autodetect --disable-gpl --disable-nonfree --disable-version3 \
   --disable-static --enable-shared --disable-doc --disable-debug --disable-x86asm \

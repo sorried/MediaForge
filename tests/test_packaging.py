@@ -219,6 +219,8 @@ class PackagingTests(unittest.TestCase):
     def test_isolated_engine_explicitly_enables_system_zlib(self):
         script = (ROOT / "scripts/build-ffmpeg.sh").read_text()
         self.assertIn("--disable-autodetect", script)
+        self.assertIn('--host-cflags="$FLAGS"', script)
+        self.assertIn('--host-ldflags="$FLAGS"', script)
         self.assertIn("--enable-zlib", script)
         self.assertIn("--enable-videotoolbox", script)
 
