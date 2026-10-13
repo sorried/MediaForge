@@ -70,6 +70,14 @@ jobs:
         shell: bash
         run: |
           scripts/package.sh '${{ matrix.arch }}' "$MEDIAFORGE_RELEASE_VERSION"
+      - name: Preserve native build diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-diagnostics-${{ matrix.arch }}
+          path: build/logs/${{ matrix.arch }}/*.log
+          if-no-files-found: warn
+          retention-days: 14
       - name: Remove temporary signing keychain
         if: always()
         shell: bash

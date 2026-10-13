@@ -184,6 +184,16 @@ class PackagingTests(unittest.TestCase):
         harness = (ROOT / "Resources/Verification/ImportScannerChecks.swift").read_text()
         self.assertIn("@main", harness)
 
+    def test_native_logs_preserve_failure_status(self):
+        script = (ROOT / "scripts/build-app.sh").read_text()
+        self.assertIn("set -euo pipefail", script)
+        self.assertIn('build 2>&1 | tee "$ROOT/build/logs/$ARCH/xcodebuild.log"', script)
+        self.assertIn('swift test --parallel 2>&1 | tee "$ROOT/build/logs/$ARCH/swift-tests.log"', script)
+        workflow = (ROOT / ".github/workflows/build.yml").read_text()
+        diagnostics = workflow.split("      - name: Preserve native build diagnostics\n", 1)[1].split("      - name:", 1)[0]
+        self.assertIn("if: always()", diagnostics)
+        self.assertIn("name: native-diagnostics-${{ matrix.arch }}", diagnostics)
+
     def test_review_branch_build_does_not_enable_release(self):
         workflow = (ROOT / ".github/workflows/build.yml").read_text()
         self.assertIn("branches: [main, mediaforge/native-verification]", workflow)

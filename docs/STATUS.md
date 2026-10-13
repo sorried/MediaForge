@@ -9,7 +9,7 @@ This ledger separates implemented code from verified native behavior. Update it 
 - Media metadata and runtime encoder/container capabilities.
 - Profiles include MP4/MOV/MKV/WebM/AVI/M4V/TS video; MP3/M4A/AAC/AIFF/OGG/Opus/FLAC/WAV audio; PNG/JPEG/WebP single-frame exports. Each requires a compatible real encoder/container composition; unsupported bundled codecs remain disabled. All18 profiles have been converted and probed successfully with the test engine.
 - Trim, dimensions, frame rate, audio removal and bitrate settings. Default aspect preservation with centered padding is verified through real converted/decode RGB pixels; explicit stretching is optional.
-- Latest pinned-LGPL Linux verification:51 core XCTest passes,1 explicit ImageIO skip; scanner6/6, app persistence/preset catalog17/17, portable packaging/version/localization/signing/release34/34. Strict Swift6 core compilation and native source syntax parse pass; no Apple SDK typecheck claim.
+- Latest pinned-LGPL Linux verification:51 core XCTest passes,1 explicit ImageIO skip; scanner6/6, app persistence/preset catalog17/17, portable packaging/version/localization/signing/release35/35. Strict Swift6 core compilation and native source syntax parse pass; no Apple SDK typecheck claim.
 - Job-local temporary output, real post-conversion probing and exclusive publication without overwrite.
 - Deadline/cancellation with child termination and kill escalation.
 

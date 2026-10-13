@@ -424,6 +424,11 @@
 - Added exact authorized review branch to push filter; previously only main/tags triggered so separate branch push would not start build. Release remains v-tag-only, no tags authorized. Context7 GitHub Actions docs checked.
 - Python34/34 including reviewbranch/tag-only wiring regression. GitHub authentication still absent; no push/remote CI executed.
 
+## Goal round78 — retain native compiler/test diagnostics
+
+- Native build capturesXcode/Swifttestcombinedoutput via tee underpipefail. Always-upload usesseparate native-diagnostics-* names, excludedfromreleaseMediaForge-*artifactpattern. Logs onlycompiler/tests, never signingcredentials.
+- Python35/35, bashsyntax/diffpass; actualpipelineexit7 preserved(noincorrectsuccess). NativejobsnotexecuteduntilGitHublogin.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.
