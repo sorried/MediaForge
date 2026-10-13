@@ -429,6 +429,11 @@
 - Native build capturesXcode/Swifttestcombinedoutput via tee underpipefail. Always-upload usesseparate native-diagnostics-* names, excludedfromreleaseMediaForge-*artifactpattern. Logs onlycompiler/tests, never signingcredentials.
 - Python35/35, bashsyntax/diffpass; actualpipelineexit7 preserved(noincorrectsuccess). NativejobsnotexecuteduntilGitHublogin.
 
+## Goal round79 — native handoff blocked on authentication
+
+- Final committedsourceverification passes51core+1ImageIOskip, scanner6,persistence17,Python35; nativeparseonly. Reviewbranchready, no backgroundjobs.
+- GitHublogin remainsabsent acrossrounds77–79 (ghauthstatus exit1). HostLinux/noXcode; authorizedremoteCI cannotstartwithoutcredentials. Stoppingautomaticroundsratherthanaddingunrelatedfixes. Resumeafteruserauthenticates. No push/tags/releasesperformed.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.
