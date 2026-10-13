@@ -34,7 +34,7 @@ FLAGS="-arch $ARCH -isysroot $SDK -mmacosx-version-min=$MACOSX_DEPLOYMENT_TARGET
   --disable-static --enable-shared --disable-doc --disable-debug --disable-x86asm \
   --disable-network --disable-audiotoolbox --disable-securetransport \
   --enable-zlib --enable-videotoolbox --enable-ffmpeg --enable-ffprobe \
-  --install-name-dir='@rpath'
+  --install-name-dir='@rpath' || { status=$?; printf "FFmpeg configure failed; compiler diagnostics follow:\n" >&2; tail -n 100 ffbuild/config.log >&2; exit "$status"; }
 make -j "$(sysctl -n hw.logicalcpu)"
 make install
 mkdir -p "$PREFIX/redistribution"

@@ -444,6 +444,11 @@
 - Run38438133333 exposed remainingline26/28 expectations comparingresolvedactual to unresolvedexpected. Prior6647bba onlyfixedloaderassertion, incompletefix acknowledged. Nowboth executablepathassertions canonicalized; Python36/36, commitd656cc3pushed.
 - BilingualREADME andrepositorydescription/topics published in47778f3; no release tags. NativeCI stillhasnotpassedprerequisites or produceddistributions.
 
+## Native XCTest prerequisites — rounds84–87
+
+- ActualCI Pythonpathchecks nowpass. macOSswiftc required platform XCTestframework+Swift overlay searchpaths (e2a25e2/9a41bc6). AppleXCTest doesnotprovideLinuxXCTMain/testCase; standaloneentryusesXCTestSuite withstrict6/17executioncounts (089eab7).
+- Runtime thenrequiredXcodeSharedFrameworks forXCTestCore. Addedrpath andcapturedxcodeversionwithoutheadbrokenpipe (1db9bc3). Python36/36/localscanner6/persistence17 verified; nativeexecutionnotyetpassed. Run38440178194awaited.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.

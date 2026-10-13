@@ -75,7 +75,9 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: native-diagnostics-${{ matrix.arch }}
-          path: build/logs/${{ matrix.arch }}/*.log
+          path: |
+            build/logs/${{ matrix.arch }}/*.log
+            build/ffmpeg/${{ matrix.arch }}/ffmpeg-*/ffbuild/config.log
           if-no-files-found: warn
           retention-days: 14
       - name: Remove temporary signing keychain
