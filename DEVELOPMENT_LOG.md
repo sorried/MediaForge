@@ -419,6 +419,11 @@
 - Completed round76 capability flags hardening: reject malformed six-character flag tokens; subprocess regression passes. Full pinned LGPL verification now51corepasses+1ImageIOskip, scanner6,persistence17,Python33. Native code remains syntax-only.
 - gh auth status exited1: no GitHub authentication present. No push or Actions run attempted; native handoff requires user login. Authorization alone does not supply credentials.
 
+## Goal round77 — review branch triggers native build
+
+- Added exact authorized review branch to push filter; previously only main/tags triggered so separate branch push would not start build. Release remains v-tag-only, no tags authorized. Context7 GitHub Actions docs checked.
+- Python34/34 including reviewbranch/tag-only wiring regression. GitHub authentication still absent; no push/remote CI executed.
+
 ## Next verification gates
 
 1. Supply real Git author identity to allow required incremental local commits; do not invent identity.

@@ -184,6 +184,12 @@ class PackagingTests(unittest.TestCase):
         harness = (ROOT / "Resources/Verification/ImportScannerChecks.swift").read_text()
         self.assertIn("@main", harness)
 
+    def test_review_branch_build_does_not_enable_release(self):
+        workflow = (ROOT / ".github/workflows/build.yml").read_text()
+        self.assertIn("branches: [main, mediaforge/native-verification]", workflow)
+        release = workflow.split("  release:\n", 1)[1]
+        self.assertIn("if: startsWith(github.ref, 'refs/tags/v')", release)
+
     def test_isolated_engine_explicitly_enables_system_zlib(self):
         script = (ROOT / "scripts/build-ffmpeg.sh").read_text()
         self.assertIn("--disable-autodetect", script)

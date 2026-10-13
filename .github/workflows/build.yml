@@ -1,7 +1,7 @@
 name: Build and release
 on:
   push:
-    branches: [main]
+    branches: [main, mediaforge/native-verification]
     tags: ['v*']
   pull_request:
   workflow_dispatch:
