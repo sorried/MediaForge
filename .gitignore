@@ -1,0 +1,16 @@
+.build/
+.build-tools/
+DerivedData/
+build/
+dist/
+.tools/
+.DS_Store
+__pycache__/
+*.pyc
+/core
+/core.*
+*.xcuserstate
+xcuserdata/
+.env
+*.p12
+*.pem
